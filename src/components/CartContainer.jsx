@@ -3,6 +3,7 @@ import CartItem from './CartItem'
 
 const CartContainer = () => {
   const { cartItems, total, amount } = useSelector((state) => state.cart)
+  console.log(cartItems)
   if (amount < 1) {
     return (
       <section className='cart'>
