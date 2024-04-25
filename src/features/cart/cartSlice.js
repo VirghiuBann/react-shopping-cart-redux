@@ -4,8 +4,8 @@ import cartItems from '../../cartItems'
 
 const initialState = {
   cartItems: cartItems,
-  amount: 4,
-  total: 0,
+  totalQty: 4,
+  totalAmount: 0,
   isLoading: true,
 }
 const cartSlice = createSlice({
@@ -21,21 +21,21 @@ const cartSlice = createSlice({
     },
     increase: (state, { payload }) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id)
-      cartItem.amount = cartItem.amount + 1
+      cartItem.quantity = cartItem.quantity + 1
     },
     decrease: (state, { payload }) => {
       const cartItem = state.cartItems.find((item) => item.id === payload.id)
-      cartItem.amount = cartItem.amount - 1
+      cartItem.quantity = cartItem.quantity - 1
     },
     calculateTotals: (state) => {
-      let amount = 0
-      let total = 0
+      let totalQty = 0
+      let totalAmount = 0
       state.cartItems.forEach((item) => {
-        amount += item.amount
-        total += item.amount * item.price
+        totalQty += item.quantity
+        totalAmount += item.quantity * item.price
       })
-      state.amount = amount
-      state.total = total
+      state.totalQty = totalQty
+      state.totalAmount = parseFloat(totalAmount.toFixed(2))
     },
   },
 })

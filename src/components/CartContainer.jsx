@@ -4,9 +4,11 @@ import { openModal } from '../features/modal/modalSlice'
 
 const CartContainer = () => {
   const dispatch = useDispatch()
-  const { cartItems, total, amount } = useSelector((state) => state.cart)
+  const { cartItems, totalQty, totalAmount } = useSelector(
+    (state) => state.cart
+  )
   // console.log(cartItems)
-  if (amount < 1) {
+  if (totalQty < 1) {
     return (
       <section className='cart'>
         <header>
@@ -30,7 +32,7 @@ const CartContainer = () => {
         <hr />
         <div className='cart-total'>
           <h4>
-            total <span>${total}</span>
+            total <span>${totalAmount}</span>
           </h4>
         </div>
         <button className='btn clear-btn' onClick={() => dispatch(openModal())}>
